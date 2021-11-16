@@ -32,13 +32,16 @@ app.use(cors());
 app.get('/', (req, res) => res.send('Hello World!'))
 
 // To do: Create a route for retrieving all quotes
-app.get('/', (req, res) => res.send(quotes));
+app.get('./quotes', (req, res) => res.send(quotes));
 
 // To do: Create a route for retrieving a random quote
-app.get('/', (req, res) => res.send(getRandomQuote()));
+app.get('/quotes/:index', (req, res) => res.send(getRandomQuote()));
 
 // To do: Add handling for out-of-range index
 app.get('/quotes/:index', (req, res) => res.send(quotes[req.params.index]))
 
 // To do: Get the server running
-console.log(getRandomQuote())
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
